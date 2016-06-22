@@ -8,6 +8,28 @@
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+  unalias rm
 fi
 
+# Copy liquidpromptrc if it needs it
+if [ ! -e "${ZDOTDIR:-$HOME}/.config/liquidpromptrc" ]; then
+  if [ ! -e "${ZDOTDIR:-$HOME}/.config" ]; then
+    echo "Creating ${ZDOTDIR:-$HOME}/.config"
+    /bin/mkdir -p "${ZDOTDIR:-$HOME}/.config"
+  fi
+  echo "Copying liquidpromptrc into ${ZDOTDIR:-$HOME}/.config/"
+#  echo /bin/ln -s "${ZDOTDIR:-$HOME}/.zprezto/runcoms/liquidpromptrc ${ZDOTDIR:-$HOME}/.config/liquidpromptrc"
+  /bin/ln -s ${ZDOTDIR:-$HOME}/.zprezto/runcoms/liquidpromptrc ${ZDOTDIR:-$HOME}/.config/liquidpromptrc
+fi
+
+antigen bundle nojhan/liquidprompt
+antigen apply
+
 # Customize to your needs...
+unsetopt ALWAYS_LAST_PROMPT
+
+bindkey "^[b" backward-word
+bindkey "^[f" forward-word
+bindkey "^E" end-of-line
+bindkey "^A" beginning-of-line
+
