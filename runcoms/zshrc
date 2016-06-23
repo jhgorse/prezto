@@ -5,9 +5,35 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+# 60 ms
 # Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+#if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+#fi
 
 # Customize to your needs...
+
+# 100 ms
+source ~/.zprezto/runcoms/liquidpromptrc
+source ~/.zprezto/modules/liquidprompt/liquidprompt
+
+# 10 ms
+#source ~/.zplug/init.zsh
+#zplug "nojhan/liquidprompt"
+
+# 20 ms
+#if ! zplug check; then
+#    zplug install
+#fi
+
+# 160 ms
+#zplug load
+
+
+unsetopt ALWAYS_LAST_PROMPT
+
+bindkey "^[b" backward-word
+bindkey "^[f" forward-word
+bindkey "^E" end-of-line
+bindkey "^A" beginning-of-line
+
